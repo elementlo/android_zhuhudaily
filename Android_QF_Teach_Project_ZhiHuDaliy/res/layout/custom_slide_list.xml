@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sv_news"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrMode="both"        tools:ignore="UselessParent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="ScrollViewSize" >
+
+            <RelativeLayout
+                android:id="@+id/rl_slide"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                tools:ignore="UselessParent" >
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_slide"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tx_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/dots_group"
+                    android:padding="10dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/dots_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+            </RelativeLayout>
+
+            <com.qf.teach.project.zhihudaily.custom.CustomListViewForScrollView
+                android:id="@+id/lv_news"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="#EEEEEE"
+                android:dividerHeight="5dp"
+                android:padding="10dp"
+                tools:ignore="NestedScrolling" />
+        </LinearLayout>
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+</LinearLayout>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>之乎日报-首页</title>
+<script src="resource/js/jquery-1.9.1.min.js"></script>
+<script>
+	$(document).ready(function(e) {
+		$.ajax({
+			type : "get",
+			async:false,
+			url : "http://10.2.156.33:8080/Java_ZhiHuDaliy/servlet/LatestServlet",
+			dataType : "jsonp",
+			jsonp: "jqueryCallback",//服务端用于接收callback调用的function名的参数
+			jsonpCallback:"success_jqueryCallback",//callback的function名称
+			success : function(json){
+				var stories = json.stories;
+				if (stories != null && stories.length > 0) {
+					var content = $("#content");
+					for (var i = 0 ; i < stories.length ; i++) {
+						$(content).append(
+							"<div id='item' style='background:#FFFFFF; padding:10px;'>" +
+								"<div id='item_text' style='float:left; width:70%;'>" + stories[i].title + "</div>" +
+								"<div id='item_img' style='float:right;'><img src='" + stories[i].images[0] + "' width='80' height='80' /></div>" +
+								"<div style='clear:both;' />" +
+								"<div style='height:5px; background:#EEEEEE;' />" +
+							"</div>"
+						);
+					}
+				}
+			},
+			error:function(){
+				alert('fail');
+			}
+		});
+    });
+</script>
+</head>
+
+<body style="margin:0; padding:0; background:#EEEEEE;">
+	<div id="head" style="width:100%; height:60px; background:#00A2ED">
+    	<ul style="list-style-type:none; padding:0; margin:0; line-height:60px;">
+        	<li style="float:left; margin-top:5px;"><img src="resource/images/ic_navigation_drawer.png" /></li>
+            <li style="float:left; margin-left:-5px; margin-top:5px;"><img src="resource/images/ic_logo.png" /></li>
+            <li style="float:left; margin-left:10px; color:#FFFFFF; font-size:18px; font-weight:bold;">首页</li>
+        </ul>
+    </div>
+    <div id="content" style="padding:10px;">
+    	
+    </div>
+</body>
+</html>
